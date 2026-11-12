@@ -1,6 +1,6 @@
 # Group Anagrams
 
-## [Solution](main.py)
+### [Solution](main.py)
 
 ![Submission](submission.png)
 
@@ -9,9 +9,9 @@
 1. The fundamental theorem of arithmetic: **every integer greater than 1 is either a prime itself or a product of prime factors.**
 2. Multiplication over complex numbers (and therefore over reals, integers and naturals) is commutative.
 
-The solution then becomes obvious if we choose to encode characters as numbers, e.g. via Python char `ord()` or string `.encode()`, which produces ASCII decimals for lowercase english words. Use these values as indexes into a precomputed prime lookup array, which only needs 123 valid positions (because `ord('z') = 122`) so it's very cheap to generate even with a trivial approach.
+The solution then becomes obvious if we choose to encode characters as numbers, e.g. via Python char `ord()` or string `.encode()`, which produces ASCII decimals for lowercase english words. Use these values as indexes into a precomputed prime lookup array, which only needs 123 valid positions (because `ord('z') = 122`) so it's very cheap to generate even with a trivial algorithm.
 
-This approach allows us to hash strings to a single number **invariant to character position.** The following demonstrates how "eat" and "tea" can be identified as anagrams via this approach:
+All of this allows us to hash strings to a single integer **invariant to character position.** The following demonstrates how "eat" and "tea" can be identified as anagrams via this strategy:
 
 ```python
 def generate_primes(n=123):
@@ -58,7 +58,7 @@ class Solution:
 
 For starters, I have no idea whether this prevents Python bigint logic from doing it's thing, and even if it does, I _know_ it does not provide runtime improvements in Leetcode (this particular submission was actually slower).
 
-Well, here's the thing: the submission passed, **but it shouldn't.** Not if the constraints are being exercised strictly, that is. The `_hash` grows quite fast and easily blows past 64 bits storage in requirement, even for medium sized words.
+Well, here's the thing: the submission passed, **but it shouldn't.** Not if the constraints are being exercised strictly, that is. The `_hash` grows quite fast and easily blows past 64 bits in storage requirement, even for medium sized words.
 
 Consider the best case to be the single-char word `a` and the worst case to be 100-char word containing only `z`s (if you don't assume the words have to be valid). The following demonstrates how quickly the `_hash` blows past 64 bits:
 
