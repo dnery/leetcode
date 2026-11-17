@@ -115,3 +115,7 @@ This is the output:
 ```
 
 Because the submission was accepted, the conclusion is that **none of the test case inputs contain strings longer than 7 chars in length.** In all fairness, it's safe to assume (although not stated) that the inputs contain only valid words, and anagrams become more scarce the longer the words get.
+
+## Timing
+
+- Best version completed in ~15m

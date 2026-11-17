@@ -23,3 +23,8 @@ A standard two-pointer sliding window relies on _monotonicity_ (adding elements 
 It involves using a binary-indexed tree (BIT, Fenwick tree) or with prefixed sums index. Runtime complexity shrinks to O(n * log(r - l + 1)), but space complexity increases to O(n). For this specific problem, **the runtime-optimal approach actually performs worse.**
 
 Prefix sum index arrays also contain a downside: the array has to be a sparse implementation or it'll need to be long enough to index the values. To work around that, you can use a **coordinate compression map.** [Read more.](https://docs.google.com/document/d/17MMkuAEyzR5mTJsM_wtmUG6v9nLwx-g694_KGn5ICAU/edit?usp=sharing)
+
+## Timing
+
+- Took many hours on this because I was obsessed with the theoretically optimal version.
+- If I had just submitted the trivial implementation I'd also realize that it is the best one because of the tight constraints (`1 <= nums.length <= 100`).
