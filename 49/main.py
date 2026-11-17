@@ -1,13 +1,11 @@
 from collections import defaultdict
 
 
-def generate_primes(n: int = 123) -> list[int]:
-    # default n=123 because ord('z')=122
+def generate_primes(n=123):  # because ord('z') = 122
     primes = []
     candidate = 2
     while len(primes) < n:
-        # all() evaluates to true for empty sequences
-        if all(candidate % it != 0 for it in primes):
+        if all(it % candidate != 0 for it in primes):
             primes.append(candidate)
         candidate += 1
     return primes
@@ -21,10 +19,12 @@ class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
         # Map of lists keyed by string hash
         anagrams = defaultdict(list)
+
         for word in strs:
             _hash = 1
             # This is equivalent to iterating chars and calling ord()
-            for ch in word.encode("utf-8"):
-                _hash *= PRIME_LOOKUP[ch]
+            for charcode in word.encode("utf-8"):
+                _hash *= PRIME_LOOKUP[charcode]
             anagrams[_hash].append(word)
+
         return list(anagrams.values())

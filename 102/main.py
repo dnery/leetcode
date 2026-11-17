@@ -22,14 +22,14 @@ class Solution:
         if not root:
             return []
 
-        log = defaultdict(list)
+        chart = defaultdict(list)
         tree = deque([(root, 0)])
         while len(tree) > 0:
             node, idx = tree.popleft()
-            log[idx].append(node.val)
+            chart[idx].append(node.val)
             if node.left is not None:
                 tree.append((node.left, idx + 1))
             if node.right is not None:
                 tree.append((node.right, idx + 1))
 
-        return list(log.values())
+        return list(chart.values())
